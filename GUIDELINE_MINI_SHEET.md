@@ -43,14 +43,14 @@ Hoàn thành trước khi xem bài của người khác hoặc bộ nhãn tham c
 - Dấu hiệu nhìn thấy: Dáng hình hộp chữ nhật, có dãy kính bên sườn nhưng chiều dài ngắn hơn hẳn xe buýt thông thường
 - Quy tắc áp dụng: Xe dạng hộp chở khách cỡ nhỏ dưới 16 chỗ thì không tính là xe buýt
 - Quyết định: Gán nhãn van
-- Nếu vẫn thiếu bằng chứng, bạn sẽ làm gì? Phóng to lên đếm số ô cửa kính và nhìn khoảng cách hai trục bánh xe
+- Nếu vẫn thiếu bằng chứng, tôi sẽ làm gì? Tôi sẽ phóng to lên đếm số ô cửa kính và nhìn khoảng cách hai trục bánh xe
 
 ### Tình huống B — xe tải hay xe van/ô tô con?
 - Ảnh và mã vật thể: drive_038 xe bán tải màu xám ở làn giữa
 - Dấu hiệu nhìn thấy: Có cabin 4 cửa chở người và phía sau có thùng hở nhỏ
 - Quy tắc áp dụng: Xe bán tải phục vụ đi lại cá nhân thì xếp chung nhóm với xe con
 - Quyết định: Gán nhãn car
-- Nếu vẫn thiếu bằng chứng, bạn sẽ làm gì? Đánh dấu needs_review rồi hỏi lại người hướng dẫn
+- Nếu vẫn thiếu bằng chứng, tôi sẽ làm gì? Tôi sẽ đánh dấu needs_review rồi hỏi lại người hướng dẫn
 
 ### Tình huống C — bị che, bị mép ảnh cắt hay không đủ bằng chứng?
 - Ảnh và mã vật thể: drive_033 xe con màu đen ở mép dưới bên phải ảnh
@@ -69,4 +69,3 @@ Hoàn thành trước khi xem bài của người khác hoặc bộ nhãn tham c
 - [x] Đã hoàn thành ba tình huống trước khi xem nguồn đối chiếu.
 - [x] Nếu làm theo cặp, hai người đã xuất bài độc lập trước khi trao đổi.
 - [x] Nếu làm cá nhân, bài riêng đã được kiểm trước khi nhận bộ tham chiếu.
-- Số vật thể thực tế: 101 — 40–60 là mục tiêu khối lượng, không phải điểm cắt.
