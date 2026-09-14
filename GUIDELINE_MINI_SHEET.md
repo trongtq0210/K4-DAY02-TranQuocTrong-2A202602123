@@ -39,7 +39,7 @@ YOLO không lưu ba thuộc tính này. Vì vậy phải xuất thêm CVAT for i
 Hoàn thành trước khi xem bài của người khác hoặc bộ nhãn tham chiếu.
 
 ### Tình huống A — xe buýt hay xe van?
-- Ảnh và mã vật thể: drive_022 xe chở khách loại vừa ở gần ngã tư
+- Ảnh và mã vật thể: drive_008 xe chở khách loại vừa ở gần ngã tư
 - Dấu hiệu nhìn thấy: Dáng hình hộp chữ nhật, có dãy kính bên sườn nhưng chiều dài ngắn hơn hẳn xe buýt thông thường
 - Quy tắc áp dụng: Xe dạng hộp chở khách cỡ nhỏ dưới 16 chỗ thì không tính là xe buýt
 - Quyết định: Gán nhãn van
