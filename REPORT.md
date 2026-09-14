@@ -48,10 +48,10 @@ Vì file text chỉ lưu các con số từ 0 đến 1. Code chỉ kiểm tra xe
 ## 5. Huấn luyện và dự đoán thử
 - Ba mã ảnh huấn luyện: drive_022, drive_033, drive_038
 - Mã ảnh thẩm định: drive_008
-- Mô tả một dự đoán trong detect_result.jpg: Mô hình tìm được đúng các xe buýt và xe ô tô đi ở giữa đường với độ tin cậy trên 75%.
-- Dự đoán đó gợi ý tôi cần kiểm lại quy tắc hoặc dữ liệu nào? Mô hình hay bỏ sót mấy xe ở xa và xe bị che khuất, cho thấy tôi cần chú ý gán kỹ hơn ở các trường hợp bị che và các xe nhỏ ở mép ngoài.
-- Minh chứng nào có thể bác bỏ nhận định của tôi? Cần test thêm trên nhiều ảnh khác chụp ở góc máy khác xem mô hình có thực sự bị yếu phần đó không hay do ảnh này ở góc xa bị mờ quá.
-- Vì sao kết quả trên bốn ảnh không phải phép đánh giá mô hình dùng thực tế? Vì tập dữ liệu có 4 ảnh là quá ít, mô hình chỉ đang học thuộc vị trí các xe trong ảnh chứ chưa tổng quát hóa được. Đi làm thực tế phải test trên hàng nghìn ảnh ở nhiều điều kiện trời mưa nắng khác nhau mới đánh giá chuẩn được.
+- Mô tả một dự đoán trong detect_result.jpg: Chỉ số huấn luyện thực tế rất thấp — precision khoảng 0.004, recall khoảng 0.19, mAP50 khoảng 0.0086 và mAP50-95 khoảng 0.0025 trên ảnh thẩm định drive_008. Việc huấn luyện cũng dừng sớm ngay sau epoch đầu tiên vì patience=3 không thấy cải thiện. Nói thẳng là ở mức chỉ số này, mô hình gần như chưa học được đặc trưng của bốn lớp, nên tôi không dám khẳng định nó "nhận đúng" xe nào với độ tin cậy cao; số hộp dự đoán đạt ngưỡng tin cậy trong ảnh chắc chắn rất ít.
+- Dự đoán đó gợi ý tôi cần kiểm lại quy tắc hoặc dữ liệu nào? Với các chỉ số thấp như vậy, tôi nghĩ nguyên nhân chính không nằm ở quy tắc gán nhãn mà ở việc chỉ có 3 ảnh huấn luyện và quá trình dừng quá sớm, nên mô hình chưa kịp học gì nhiều. Đây không phải bằng chứng cho thấy nhãn của tôi sai, chỉ cho thấy bốn ảnh là quá ít để huấn luyện có ý nghĩa.
+- Minh chứng nào có thể bác bỏ nhận định của tôi? Nếu tăng số ảnh huấn luyện và nới patience để mô hình huấn luyện đủ lâu mà mAP vẫn thấp gần như vậy thì lúc đó mới có cơ sở nghi ngờ chất lượng nhãn hoặc quy tắc gán, chứ không phải do thiếu dữ liệu.
+- Vì sao kết quả trên bốn ảnh không phải phép đánh giá mô hình dùng thực tế? Vì tập dữ liệu có 4 ảnh, trong đó chỉ 3 ảnh dùng để huấn luyện, là quá ít để mô hình học tổng quát; các chỉ số mAP gần như bằng 0 ở đây phản ánh đúng việc thiếu dữ liệu chứ không phản ánh khả năng dùng thực tế. Đi làm thực tế phải test trên hàng nghìn ảnh ở nhiều điều kiện trời mưa nắng khác nhau mới đánh giá chuẩn được.
 
 ## 6. Đối chiếu nhãn
 - Số hộp ghép được: 48
@@ -59,8 +59,8 @@ Vì file text chỉ lưu các con số từ 0 đến 1. Code chỉ kiểm tra xe
 - Mức đồng thuận lớp: 72.9%
 - Số hộp phía tôi không ghép được: 53
 - Số hộp phía đối chiếu không ghép được: 2
-- Một điểm khác biệt cụ thể: Tôi gán hết tất cả 101 xe nhìn thấy trong ảnh kể cả các xe ở tít xa và xe đỗ bên lề đường, còn bộ nhãn của thầy chỉ gán 50 xe chính đang chạy ở gần. Ngoài ra có vài xe 7 chỗ tôi gán là car nhưng bên thầy gán là van.
-- Quy tắc hoặc hành động sửa phát sinh: Cần thống nhất lại xem các xe ở quá xa hoặc đỗ ngoài đường chính có phải gán không, và quy định rõ xe 7 chỗ xếp vào car hay van.
+- Một điểm khác biệt cụ thể: Tôi gán hết tất cả 101 xe nhìn thấy trong ảnh kể cả các xe ở tít xa và xe đỗ bên lề đường, còn bộ nhãn của thầy chỉ gán 50 xe, nên phần lớn trong số 53 hộp phía tôi không ghép được là các xe ở ngoài phạm vi mà thầy chọn gán chứ không hẳn là tôi gán sai. Mức đồng thuận lớp chỉ 72.9% trên các hộp ghép được cũng cho thấy có một số trường hợp hai bên xếp khác lớp nhau, nhiều khả năng rơi vào các cặp lớp dễ nhầm như car/van hoặc truck/van, nhưng tôi chưa có bảng chi tiết từng hộp để khẳng định chắc chắn là trường hợp nào.
+- Quy tắc hoặc hành động sửa phát sinh: Cần thống nhất lại xem các xe ở quá xa hoặc đỗ ngoài đường chính có phải gán không, và xem lại ranh giới phân lớp giữa các nhóm dễ nhầm như car/van.
 - Vì sao mức đồng thuận cao không chứng minh mọi nhãn đều đúng? Vì nếu cả hai bên cùng hiểu sai quy tắc hoặc cùng nhìn nhầm một loại xe giống nhau thì kết quả so khớp vẫn ra điểm cao, dù thực tế nhãn đó bị gán sai.
 
 ## 7. Kiểm tra kho GitHub cá nhân
